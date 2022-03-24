@@ -1,0 +1,78 @@
+[color]
+  diff = auto
+  status = auto
+  branch = auto
+[diff]
+  rename = copy
+  color = auto
+[apply]
+  whitespace = strip
+[pager]
+  color = true
+[status]
+  color = auto
+[branch]
+  autosetuprebase = always
+[gc]
+  reflogexpireunreachable = 1
+[rerere]
+  enabled = 1
+[core]
+  autocrlf = false
+  safecrlf = true
+  whitespace = space-before-tab,tabwidth=2,trailing-space
+[alias]
+  co = "checkout"
+  ci = "commit"
+  ciall = "commit -a -v"
+  cleanbr = "symbolic-ref -m 'Creating clean branch' HEAD "
+  descbr = !git branch --edit-description $1
+  draftpatchset = "push gerrit HEAD:refs/for/drafts"
+  brdesc = !git show-branch-description
+  freshsearch = !git fetch origin && git search
+  fetchpatch = "fetch gerrit"
+  hist = "log --no-merges --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short"
+  infoz = !echo -n "HEAD: " && git rev-parse HEAD && env GIT_PAGER=cat git log -1 && git stat
+  log = "log"
+  lol = "log --no-merges --graph --decorate --pretty=format:\"%h %ad %aN %s\" --color --date=short"
+  lola = "log --no-merges --graph --decorate --pretty=format:\"%h %ad %aN %s\" --color --date=short --all"
+  lsbr = "branch" # list all branches, even remote ones
+  lsdel = !git log --diff-filter=D --summary | grep delete
+  lsmerged = "branch --merged"
+  # list remote repositories
+  lsrem = "remote"
+  # list stashes
+  lsst = "stash list"
+  # list all tags, to keep commands consistent, e.g. git lstag
+  lstag = "tag -l"
+  # list unmerged branches
+  lsunmerged = "branch --no-merged"
+  # list patchsets
+  lspatchsets = "ls-remote gerrit refs/changes/*"
+  mkbr = "branch" # create branch if you specify a branch name after it, e.g. git mkbr upgrading_rails
+  # create a new tag based on specified commit
+  mktag = "tag -a"
+  # remove existing tag by name
+  rmtag = "tag -d"
+  # rename tag from one name to another
+  mvtag = "tag -m"
+  # create new remote repository for project
+  mkrem = "remote add"
+  # initialize all submodules
+  modinit = "submodule init"
+  # update all submodules
+  modup = "submodule update"
+  # show status of all submodules
+  modst = "submodule status"
+  # add new submodule, i.e. git modadd module-name url
+  modadd = "submodule add"
+  # rename branch from one name to another
+  mvbr = "branch -m"
+  stat = "status -sb"
+[push]
+  default = nothing
+[rebase]
+  stat = true
+  autoStash = true
+[transfer]
+  fsckobjects = true
